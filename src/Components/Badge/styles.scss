@@ -1,0 +1,25 @@
+@import '../../styles/global';
+
+.badge {
+  font-family: $font-family-base;
+  font-size: 0.7rem;
+  min-width: 0.45rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  vertical-align: text-top;
+
+  &-primary {
+    background-color: $purple;
+  }
+  &-dark {
+    background-color: $primary;
+  }
+
+  &.borderDark {
+    border: 2px solid $black;
+  }
+
+  &.borderLight {
+    border: 2px solid $white;
+  }
+}

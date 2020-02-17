@@ -1,0 +1,42 @@
+@import '../../styles/global';
+
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 0.094em;
+
+  &:active,
+  &.active {
+    box-shadow: none !important;
+  }
+}
+
+.btn-primary {
+  @include button-variant($black, $transparent, $purple);
+}
+
+.btn-outline-primary {
+  @include button-variant($white, $black, $transparent);
+  color: $black;
+
+  &:hover {
+    @include button-variant($white, $purple, $white);
+    color: $purple !important;
+  }
+}
+
+.btn-tertiary {
+  @include button-variant($gray-200, $transparent, $gray-200);
+  color: $black;
+
+  &:hover {
+    @include button-variant($purple-secondary, $transparent, $purple-secondary);
+    color: $gray-900;
+  }
+  &:focus {
+    @include button-variant($gray-500, $transparent, $gray-500);
+  }
+  &:visited {
+    @include button-variant($gray-200, $transparent, $gray-200);
+    color: $black;
+  }
+}

@@ -1,0 +1,204 @@
+@import '../../styles/global';
+
+$checkbox-size: 1rem !default;
+$checkbox-font-size: 1rem !default;
+
+$checkbox-calc: $checkbox-size / 10 !default;
+
+$checkbox-border-size: $checkbox-calc !default;
+$checkbox-border-radius: 0 !default;
+$checkbox-bg-checked: $purple !default;
+$checkbox-border-color: $black !default;
+$checkbox-border-color-disabled: rgba($black, 0.5) !default;
+$checkbox-border-color-checked: $purple !default;
+$checkbox-checkmark-color: $white !default;
+
+$checkbox-label-color: $body-color;
+$checkbox-label-color-disabled: rgba($checkbox-label-color, 0.5);
+
+/* Switch Variables */
+$switch-size: 1.2rem !default;
+$switch-handle-bg: $gray-500;
+$switch-rail-bg: $gray-900;
+
+$switch-handle-bg-disabled: $gray-200 !default;
+$switch-rail-bg-disabled: $gray-500 !default;
+
+$switch-handle-bg-checked-disabled: $purple-secondary !default;
+$switch-rail-bg-checked-disabled: $gray-500 !default;
+
+.checkbox {
+  display: inline-block;
+  font-family: $font-family-base;
+  font-size: $checkbox-font-size;
+  min-height: $checkbox-size;
+  position: relative;
+  user-select: none;
+  vertical-align: text-top;
+
+  &.block label {
+    padding: 0.75rem 1rem;
+    margin: 0;
+
+    .label-text {
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  &.truncate {
+    width: 100%;
+
+    .label-text {
+      @include text-truncate;
+    }
+  }
+
+  label {
+    color: $checkbox-label-color;
+    cursor: pointer;
+    display: flex;
+    margin-right: 0.25rem;
+
+    .label-text {
+      &.right {
+        margin-left: $checkbox-size / 3;
+        order: 1;
+      }
+      &.left {
+        margin-right: $checkbox-size / 3;
+        order: 0;
+      }
+    }
+  }
+}
+
+.checkbox-input {
+  appearance: none;
+  background-color: $white;
+  border-radius: $checkbox-border-radius;
+  border: $checkbox-border-size solid $checkbox-border-color;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  height: $checkbox-size;
+  margin: 0;
+  min-width: $checkbox-size;
+  order: 1;
+  outline: none;
+  pointer-events: none;
+  position: relative;
+  width: $checkbox-size;
+
+  &:checked,
+  &:indeterminate {
+    background-color: $checkbox-bg-checked;
+    border-color: $checkbox-bg-checked;
+
+    &::before {
+      border: solid $checkbox-checkmark-color;
+      border-width: 0 $checkbox-calc $checkbox-calc 0;
+      content: '';
+      height: $checkbox-size / 1.75;
+      margin: 0 auto;
+      transform: rotate(45deg);
+      width: $checkbox-size / 3.5;
+    }
+
+    &:indeterminate {
+      &::before {
+        border-bottom: solid $checkbox-checkmark-color;
+        border-width: 0 0 $checkbox-calc 0;
+        content: '';
+        height: $checkbox-size / 3.5;
+        margin-top: $checkbox-calc;
+        transform: none;
+        width: $checkbox-size - ($checkbox-calc * 4);
+      }
+    }
+  }
+
+  &:disabled {
+    border-color: $checkbox-border-color-disabled;
+
+    &:checked,
+    &:indeterminate {
+      background-color: $purple-secondary;
+      border-color: $purple-secondary;
+    }
+  }
+}
+
+.checkbox-has-error input {
+  background-color: rgba(red, 0.2);
+  border-color: red;
+
+  &::before {
+    border-color: red;
+  }
+}
+
+/* Switch Code */
+.checkbox-switch {
+  &-input {
+    background-color: $switch-rail-bg;
+    border-radius: $switch-size / 2;
+    border: none;
+    display: inline-block;
+    height: $switch-size / 2;
+    position: relative;
+    width: $switch-size * 1.5;
+
+    &::before {
+      @include box-shadow(1px 0 1px rgba($gray-700, 0.7));
+      background-color: $switch-handle-bg;
+      border-radius: 100%;
+      content: '';
+      height: $switch-size;
+      left: 0;
+      position: absolute;
+      top: -($switch-size / 4);
+      transition: 0.4s;
+      width: $switch-size;
+    }
+
+    &:disabled {
+      background-color: $switch-rail-bg-disabled;
+      cursor: not-allowed;
+      pointer-events: none;
+
+      &::before {
+        background-color: $switch-handle-bg-disabled;
+      }
+    }
+
+    &:checked {
+      background-color: $purple-secondary;
+
+      &::before {
+        @include box-shadow(-1px 0 1px rgba(darken($purple, 15%), 0.7));
+        background-color: $purple;
+        border: none;
+        content: '';
+        counter-reset: '';
+        height: $switch-size;
+        left: -$switch-size / 2;
+        margin-top: 0;
+        top: -($switch-size / 4);
+        transform: translateX($switch-size);
+        transition: 0.4s;
+        width: $switch-size;
+      }
+
+      &:disabled {
+        background-color: $switch-rail-bg-checked-disabled;
+        cursor: not-allowed;
+        pointer-events: none;
+
+        &::before {
+          background-color: $switch-handle-bg-checked-disabled;
+        }
+      }
+    }
+  }
+}

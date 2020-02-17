@@ -1,0 +1,196 @@
+@import '../../styles/global';
+
+$list-link-padding-x: 1rem !default;
+$list-link-padding-y: 0.75rem !default;
+
+$list-link-bg: $white !default;
+
+$list-link-color: $primary !default;
+$list-link-hover-color: $primary !default;
+$list-link-hover-bg: $gray-200 !default;
+
+$list-link-hover-transition: $transition-base;
+$list-link-leader-border-color: $gray-300;
+
+$caret-size: $font-size-base / 3.5 !default;
+$caret-color: $primary !default;
+
+$dropdown-trigger-font-size: $font-size-base;
+
+$dropdown-trigger-padding-x: 0 !default;
+$dropdown-trigger-padding-y: 0.25rem !default;
+
+$dropdown-width: 210px !default;
+
+/* Trigger */
+.dropdown-trigger {
+  border-bottom: 2px solid $purple;
+  font-size: $dropdown-trigger-font-size;
+  font-family: $font-family-base;
+  font-weight: $font-weight-base;
+  cursor: pointer;
+  display: inline-block;
+  padding: $dropdown-trigger-padding-y ($caret-size * 4)
+    $dropdown-trigger-padding-y $dropdown-trigger-padding-x;
+  position: relative;
+  line-height: 1;
+
+  &.fullwidth {
+    width: 100%;
+  }
+
+  &.block {
+    @include text-truncate();
+    display: block;
+    width: calc(#{$dropdown-width - (#{$caret-size} * 4)});
+  }
+
+  /* Down Arrow */
+  &::after {
+    border-color: $caret-color $transparent $transparent $transparent;
+    border-style: solid;
+    border-width: $caret-size $caret-size 0 $caret-size;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: calc((50% + #{$dropdown-trigger-padding-y}) - #{$caret-size});
+    transition: $transition-base;
+    z-index: 1;
+  }
+
+  &.active:after {
+    transform: rotate(-180deg);
+  }
+}
+
+/* Dropdown */
+.dropdown {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+
+  &.fullwidth {
+    width: calc(100% - (#{$caret-size} * 4));
+  }
+
+  &.block {
+    display: block;
+    width: $dropdown-width;
+  }
+
+  .dropdown-menu {
+    @include fadeOut();
+    position: relative;
+    z-index: $zindex-dropdown;
+
+    &.fadeIn {
+      @include fadeIn();
+    }
+
+    .dropdown-list {
+      @include elevation(4);
+      @include fadeIn();
+      background-color: $list-link-bg;
+      font-family: $font-family-base;
+      font-weight: $font-weight-base;
+      list-style: none;
+      margin: 0;
+      max-height: 336px;
+      min-height: 42px;
+      overflow-y: auto;
+      padding-left: 0;
+      position: absolute;
+      top: 0;
+      width: $dropdown-width;
+
+      &.left {
+        left: 0;
+        position: absolute;
+        top: 0;
+      }
+
+      &.right {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .dropdown-list-item {
+        color: $list-link-color;
+        cursor: pointer;
+        display: block;
+        padding: $list-link-padding-y $list-link-padding-x;
+        position: relative;
+        text-decoration: none;
+        transition: $list-link-hover-transition;
+        user-select: none;
+
+        .truncate {
+          @include text-truncate(); /* Set all link content to truncate */
+          width: 100%;
+        }
+
+        &.underline::after {
+          background-color: $list-link-leader-border-color;
+          bottom: 0;
+          content: '';
+          display: block;
+          height: 1px;
+          left: $list-link-padding-x;
+          margin-left: 0;
+          margin-right: 0;
+          position: absolute;
+          right: $list-link-padding-x;
+        }
+
+        &:hover {
+          background-color: $list-link-hover-bg;
+          color: $list-link-hover-color;
+          transition: $list-link-hover-transition;
+        }
+
+        &.nested {
+          align-items: center;
+          display: flex;
+          padding-right: ($list-link-padding-x * 2) + $caret-size;
+          position: relative;
+
+          &::after {
+            border-color: $transparent $transparent $transparent $caret-color;
+            border-style: solid;
+            border-width: $caret-size 0 $caret-size $caret-size;
+            content: '';
+            position: absolute;
+            right: $list-link-padding-x;
+            top: calc(50% - #{$caret-size});
+          }
+        }
+
+        &.active {
+          background-color: $list-link-hover-bg;
+          transition: $list-link-hover-transition;
+
+          &::before {
+            background-color: $purple;
+            content: '';
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transition: $list-link-hover-transition;
+            width: $list-link-padding-x / 2;
+          }
+        }
+
+        &.disabled,
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}

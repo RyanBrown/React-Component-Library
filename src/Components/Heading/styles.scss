@@ -1,0 +1,31 @@
+$h1-font-size: 3rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.5rem;
+$h4-font-size: 1rem;
+$h5-font-size: 1rem;
+$h6-font-size: 1rem;
+
+$font-weight-400: 400;
+$font-weight-700: 700;
+
+// Sizes
+.headline {
+ font-size:$h4-font-size;
+ color: red;
+}
+
+.title {
+ font-size:$h5-font-size;
+}
+
+.subtitle {
+ font-size:$h6-font-size;
+}
+
+// Heading font weights
+.regular {
+  font-weight: $font-weight-400;
+}
+.bold {
+  font-weight: $font-weight-700;
+}

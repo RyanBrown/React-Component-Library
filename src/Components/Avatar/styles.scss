@@ -1,0 +1,144 @@
+@import '../../styles/global';
+
+/* Component Variables */
+$avatar-bg-dark: $black;
+$avatar-bg-light: $white;
+$avatar-color-dark: $black;
+$avatar-color-light: $white;
+$avatar-border-radius: 50%;
+
+$avatar-size-xs: 24px;
+$avatar-size-sm: 32px;
+$avatar-size-md: 48px;
+$avatar-size-lg: 72px;
+$avatar-size-xl: 144px;
+
+$avatar-size-default: $avatar-size-md;
+
+$avatar-font-size-xs: $avatar-size-xs / 1.75;
+$avatar-font-size-sm: $avatar-size-sm / 1.75;
+$avatar-font-size-md: $avatar-size-md / 1.75;
+$avatar-font-size-lg: $avatar-size-lg / 1.75;
+$avatar-font-size-xl: $avatar-size-xl / 1.75;
+
+$avatar-font-size-default: $avatar-font-size-md;
+
+$avatar-box-shadow: inset 0 0 0.25rem rgba($black, 0.25);
+
+/* Component Styles */
+.Avatar {
+  @include border-radius($avatar-border-radius, 0);
+  background-color: $avatar-bg-dark;
+  color: $avatar-color-light;
+  font-family: $font-family-base;
+  font-size: $avatar-font-size-default;
+  font-weight: $font-weight-500;
+  height: $avatar-size-default;
+  line-height: $avatar-size-default;
+  overflow: hidden;
+  text-transform: uppercase;
+  width: $avatar-size-default;
+
+  &.borderDark {
+    border: ($avatar-size-default / 48) solid $black;
+  }
+  &.borderLight {
+    border: ($avatar-size-default / 48) solid $white;
+  }
+  &.dark {
+    background-color: $avatar-bg-dark;
+  }
+  &.light {
+    background-color: $avatar-bg-light;
+    color: $avatar-color-dark;
+  }
+  &.blue {
+    background-color: $blue;
+  }
+  &.indigo {
+    background-color: $indigo;
+  }
+  &.purple {
+    background-color: $purple;
+  }
+  &.pink {
+    background-color: $pink;
+  }
+  &.red {
+    background-color: $red;
+  }
+  &.orange {
+    background-color: $orange;
+  }
+  &.yellow {
+    background-color: $yellow;
+  }
+  &.green {
+    background-color: $green;
+  }
+  &.teal {
+    background-color: $teal;
+  }
+  &.cyan {
+    background-color: $cyan;
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+
+    &::before {
+      @include border-radius($avatar-border-radius, 0);
+      @include box-shadow($avatar-box-shadow);
+      content: '';
+      display: block;
+      padding-top: 100%;
+      position: relative;
+      z-index: 5;
+    }
+
+    span,
+    img {
+      height: 100%;
+      left: 0;
+      object-fit: cover;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      white-space: nowrap;
+      width: 100%;
+    }
+  }
+
+  // Avatar Sizes
+  &.xs {
+    height: $avatar-size-xs;
+    font-size: $avatar-font-size-xs;
+    line-height: $avatar-size-xs;
+    width: $avatar-size-xs;
+  }
+  &.sm {
+    height: $avatar-size-sm;
+    font-size: $avatar-font-size-sm;
+    line-height: $avatar-size-sm;
+    width: $avatar-size-sm;
+  }
+  &.md {
+    height: $avatar-size-md;
+    font-size: $avatar-font-size-md;
+    line-height: $avatar-size-md;
+    width: $avatar-size-md;
+  }
+  &.lg {
+    height: $avatar-size-lg;
+    font-size: $avatar-font-size-lg;
+    line-height: $avatar-size-lg;
+    width: $avatar-size-lg;
+  }
+  &.xl {
+    height: $avatar-size-xl;
+    font-size: $avatar-font-size-xl;
+    line-height: $avatar-size-xl;
+    width: $avatar-size-xl;
+  }
+}
